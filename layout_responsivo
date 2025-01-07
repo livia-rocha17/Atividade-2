@@ -1,0 +1,50 @@
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(title: Text("Layout Responsivo")),
+        body: LayoutBuilder(
+          builder: (context, constraints) {
+            if (constraints.maxWidth < 600) {
+              return _buildSmallLayout();
+            } else {
+              return _buildLargeLayout();
+            }
+          },
+        ),
+      ),
+    );
+  }
+
+  Widget _buildSmallLayout() {
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Text("Layout para telas pequenas", style: TextStyle(fontSize: 18)),
+          Icon(Icons.phone_android, size: 100),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildLargeLayout() {
+    return Center(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Text("Layout para telas grandes", style: TextStyle(fontSize: 18)),
+          SizedBox(width: 20),
+          Icon(Icons.computer, size: 100),
+        ],
+      ),
+    );
+  }
+}
